@@ -16,7 +16,7 @@ if __name__== '__main__':
 
     ###### edit here ######
     args.device = 'cuda'
-    # xaifg는 cpu가 더 빠를때도 많음
+    
 
     # node
     args.dataset = 'syn3'
@@ -28,7 +28,7 @@ if __name__== '__main__':
     # args.bn = False
 
     args.gnn_type = 'supervised' # 'supervised' or 'unsupervised'
-    args.hidden_dim = 128 # unsupervised일때만
+    args.hidden_dim = 128 # only unsupervised
     args.task = 'neg' # 'pos' or 'neg'
     args.setting = 1 # neg일때 setting 잘보고하기
     
@@ -50,7 +50,7 @@ if __name__== '__main__':
     if not os.path.exists(grid_result_file_name):
         with open(grid_result_file_name, "w") as f:
             f.write(f'nodes: {explainer.data.nodes}\n')
-            f.write("iter, scale, rocauc\n")  # 헤더 추가 (필요하면)
+            f.write("iter, scale, rocauc\n")  # 
 
     with open(grid_result_file_name, "w") as f:
         for iter in iters:
