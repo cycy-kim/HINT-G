@@ -33,7 +33,7 @@ if __name__== '__main__':
 
     ###
     args.gnn_type = 'unsupervised' # 'supervised' or 'unsupervised'
-    args.hidden_dim = 128 # unsupervised일때만
+    args.hidden_dim = 128 # only used when unsupervised
     args.task = 'pos' # 'pos' or 'neg'
     args.setting = 1 # 1로 고정 / pos neg에 맞게 dataset/dataset.py에 NODE_SETTINGS 수정
     ###
