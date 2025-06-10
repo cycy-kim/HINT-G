@@ -15,7 +15,7 @@ if __name__== '__main__':
 
     ###### edit here ######
     args.device = 'cuda'
-    # xaifg는 cpu가 더 빠를때도 많음
+    
 
     # node
     args.dataset = 'syn3'
@@ -27,7 +27,7 @@ if __name__== '__main__':
     # args.bn = False
 
     args.gnn_type = 'supervised' # 'supervised' or 'unsupervised'
-    args.hidden_dim = 128 # unsupervised일때만
+    args.hidden_dim = 128 # only used in unsupervised
     args.task = 'neg' # 'pos' or 'neg'
     args.setting = 1 # neg일때 setting 잘보고하기
     
