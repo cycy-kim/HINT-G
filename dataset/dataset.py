@@ -27,10 +27,10 @@ NODE_SETTINGS = {
     'syn2': {},
 
     'syn3': {
-        # 1: [i for i in range(511,871,6)],   # pos, neg unsup
+        1: [i for i in range(511,871,6)],   # pos, neg unsup
         # 1: [i for i in range(511,871,24)],   # pos, neg unsup
         # 1: [i for i in range(511,871,6)],   # pos
-        1: [i for i in range(0, 511, 9)],   # neg
+        # 1: [i for i in range(0, 511, 9)],   # neg
         # 1: [i for i in range(450, 511, 9)],   # neg test
         # 1: [i for i in range(0, 511, 24)],   # neg test
         # 1: [i for i in range(733,734)],   # pos unsup vis
@@ -41,8 +41,8 @@ NODE_SETTINGS = {
 
     'syn4': {
         # 1: [i for i in range(511,800)], # motif있는것들싹다
-        # 1: [i for i in range(511,800,6)], # pos neg
-        1: [i for i in range(511,800, 24)], # pos neg
+        1: [i for i in range(511,800,6)], # pos neg
+        # 1: [i for i in range(511,800, 24)], # pos neg
         # 1: [550, 610, 670, 730, 790], # 그냥 암거나
         2: [i for i in range(511,800)],
         # 3: [i for i in range(1231)],
@@ -50,9 +50,10 @@ NODE_SETTINGS = {
     },
     
     'BA-2motif': {
-        # 1: [i for i in range(0,100)] + [i for i in range(500,600)], # pos
+        1: [i for i in range(0,100)] + [i for i in range(500,600)], # pos
+        # 1: [i for i in range(0,100,20)] + [i for i in range(500,600,20)], # pos
         # 1: [i for i in range(505,506)], # vis
-        1: [i for i in range(0,100)], # neg
+        # 1: [i for i in range(0,100)], # neg
         # 1: [i for i in range(0,100,5)], # neg test
         # 1: [44], # neg vis, iter20, scale100
         2: [i for i in range(1000)], # Each graph has its own motif.
@@ -299,9 +300,6 @@ class SyntheticDataset(Dataset):
 
 class MutagDataset(Dataset):
     def __init__(self, args, embeds=None):
-        """
-        dataset: syn1~syn4, BA-2motif
-        """
         self.args = args
 
         self.dataset = args.dataset

@@ -312,9 +312,9 @@ class Explainer(nn.Module):
 
 
 
-class XAIFG(Explainer):
+class HINT_G_Edge(Explainer):
     def __init__(self, args):
-        super(XAIFG, self).__init__()
+        super(HINT_G_Edge, self).__init__()
 
         self.args = args
         if args.dataset == 'Mutagenicity':
@@ -962,9 +962,18 @@ class XAIFG(Explainer):
         print(f"Mean AUC ROC: {mean_auc_roc:.2f}")
         return mean_auc_roc, mean_acc, mean_precision, mean_recall
 
-class XAIFG_Node(Explainer):
+    def edge_influence_single(self, nodeid):
+        if self.args.task == 'neg':
+            score_edges = self._neg_singlegraph(nodeid)
+            # edge_reals, topk = self._get_neg_reals(nodeid, score_edges, return_topk=True)
+        elif self.args.task == 'pos':
+            score_edges = self._pos_singlegraph(nodeid)
+            # edge_reals, topk = self._get_pos_reals(nodeid, score_edges, return_topk=True)
+        return score_edges
+    
+class HINT_G_Node(Explainer):
     def __init__(self, args):
-        super(XAIFG_Node, self).__init__()
+        super(HINT_G_Node, self).__init__()
 
         self.args = args
         if args.dataset == 'Mutagenicity':
@@ -2010,34 +2019,34 @@ class XAIFG_Node(Explainer):
 
                     # unsup node pos vis
                     """"""
-                    # remapped_node = self.data.remap[node]
-                    # adj = self.data.sub_support_tensors[remapped_node].cpu().to_dense()
-                    # node_scores = self.node_scores_singlegraph
-                    # normalized_node_scores = [(x - min(node_scores)) / (max(node_scores) - min(node_scores)) if max(node_scores) > min(node_scores) else 0 for x in node_scores]
-                    # normalized_node_scores = [x * 30 for x in normalized_node_scores] # 0~10 norm
-                    # score_edges.reverse()
-                    # if len(node_scores) >= 20:
-                    #     continue
-                    # # node만
-                    # # plot_pos_adj_node(
-                    # #     adj = adj,
-                    # #     node_scores = normalized_node_scores,
-                    # #     show=True,
-                    # #     save=False,
-                    # #     pic_name='',
-                    # # )
-                    # # 둘다
-                    # topk = 6 # cycle=6, grid=12
-                    # plot_pos_adj_both(
+                    remapped_node = self.data.remap[node]
+                    adj = self.data.sub_support_tensors[remapped_node].cpu().to_dense()
+                    node_scores = self.node_scores_singlegraph
+                    normalized_node_scores = [(x - min(node_scores)) / (max(node_scores) - min(node_scores)) if max(node_scores) > min(node_scores) else 0 for x in node_scores]
+                    normalized_node_scores = [x * 30 for x in normalized_node_scores] # 0~10 norm
+                    score_edges.reverse()
+                    if len(node_scores) >= 20:
+                        continue
+                    # node만
+                    # plot_pos_adj_node(
                     #     adj = adj,
                     #     node_scores = normalized_node_scores,
-                    #     special_edges=score_edges,
-                    #     topk=topk,
                     #     show=True,
                     #     save=False,
                     #     pic_name='',
-                    #     with_labels=False
                     # )
+                    # 둘다
+                    topk = 6 # cycle=6, grid=12
+                    plot_pos_adj_both(
+                        adj = adj,
+                        node_scores = normalized_node_scores,
+                        special_edges=score_edges,
+                        topk=topk,
+                        show=True,
+                        save=False,
+                        pic_name='',
+                        with_labels=False
+                    )
                     
                     
 
@@ -2075,6 +2084,15 @@ class XAIFG_Node(Explainer):
         print(f"Mean Recall: {mean_recall:.2f}")
         print(f"Mean AUC ROC: {mean_auc_roc:.2f}")
         return mean_auc_roc, mean_acc, mean_precision, mean_recall
+
+    def edge_influence_single(self, nodeid):
+        if self.args.task == 'neg':
+            score_edges = self._neg_singlegraph(nodeid)
+            # edge_reals, topk = self._get_neg_reals(nodeid, score_edges, return_topk=True)
+        elif self.args.task == 'pos':
+            score_edges = self._pos_singlegraph(nodeid)
+            # edge_reals, topk = self._get_pos_reals(nodeid, score_edges, return_topk=True)
+        return score_edges
 
 
 

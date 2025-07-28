@@ -290,91 +290,6 @@ def plot_line_graph(scores, name=''):
     plt.grid(True)
     plt.show()
 
-# def plot_multiple_line_graphs(scores_list, names=None, save_path=None):
-#     """
-#     여러 개의 (epoch, score) 데이터를 받아 세로로 쭉 나열하여 개별 그래프를 생성.
-#     저장 경로가 제공되면 해당 경로에 저장.
-
-#     Args:
-#         scores_list (List of List of Tuple): [[(epoch, score), ...], [(epoch, score), ...], ...]
-#         names (List of str, optional): 그래프 제목 리스트 (None일 경우 자동 생성)
-#         save_path (str, optional): 그래프를 저장할 경로 (None이면 저장하지 않음)
-#     """
-#     num_graphs = len(scores_list)
-    
-#     plt.figure(figsize=(8, 4 * num_graphs))  # 전체 크기 조정 (세로 길이 늘리기)
-
-#     for i, scores in enumerate(scores_list):
-#         epochs, values = zip(*scores)  # (epoch, score) 튜플 분리
-#         name = names[i] if names and i < len(names) else f"Graph {i+1}"  # 그래프 이름 설정
-
-#         plt.subplot(num_graphs, 1, i + 1)  # 세로로 배치
-#         plt.plot(epochs, values, marker='o', linestyle='-', color='b', label=name)
-#         plt.xlabel("Epoch")
-#         plt.ylabel("Score")
-#         plt.title(name)
-#         plt.legend()
-#         plt.grid(True)
-
-#     plt.tight_layout()  # 그래프 간 간격 조정
-
-#     # 저장 경로가 있으면 이미지 파일 저장
-#     if save_path:
-#         max_epoch = max(epoch for epoch, _ in scores_list[0]) # 최대 epoch 찾기
-#         save_filename = f"{max_epoch}_graph.png"
-#         save_full_path = os.path.join(save_path, save_filename)
-
-#         plt.savefig(save_full_path, dpi=300, bbox_inches='tight')
-#         print(f"Graph saved to {save_full_path}")
-#     else:
-#         plt.show()
-
-#     plt.close()
-
-# def plot_multiple_line_graphs(scores_list, names=None, save_path=None):
-#     """
-#     여러 개의 (epoch, score) 데이터를 받아 세로로 배치하여 개별 그래프를 생성.
-#     X축 간격을 균등하게 조정하여 정렬된 그래프를 표시.
-#     저장 경로가 제공되면 해당 경로에 저장.
-
-#     Args:
-#         scores_list (List of List of Tuple): [[(epoch, score), ...], [(epoch, score), ...], ...]
-#         names (List of str, optional): 그래프 제목 리스트 (None일 경우 자동 생성)
-#         save_path (str, optional): 그래프를 저장할 경로 (None이면 저장하지 않음)
-#     """
-#     num_graphs = len(scores_list)
-    
-#     plt.figure(figsize=(8, 4 * num_graphs))  # 전체 크기 조정 (세로 길이 늘리기)
-
-#     for i, scores in enumerate(scores_list):
-#         epochs, values = zip(*scores)  # (epoch, score) 튜플 분리
-#         name = names[i] if names and i < len(names) else f"Graph {i+1}"  # 그래프 이름 설정
-
-#         x_indices = list(range(len(epochs)))  # X축을 균등한 간격으로 정렬된 정수 인덱스로 변환
-
-#         plt.subplot(num_graphs, 1, i + 1)  # 세로로 배치
-#         plt.plot(x_indices, values, marker='o', linestyle='-', color='b', label=name)
-#         plt.xticks(x_indices, epochs)  # 원래 epoch 값을 x축 눈금으로 표시
-#         plt.xlabel("Epoch")
-#         plt.ylabel("Score")
-#         plt.title(name)
-#         plt.legend()
-#         plt.grid(True)
-
-#     plt.tight_layout()  # 그래프 간 간격 조정
-
-#     # 저장 경로가 있으면 이미지 파일 저장
-#     if save_path:
-#         max_epoch = max(epoch for epoch, _ in scores_list[0]) # 최대 epoch 찾기
-#         save_filename = f"{max_epoch}_graph.png"
-#         save_full_path = os.path.join(save_path, save_filename)
-
-#         plt.savefig(save_full_path, dpi=300, bbox_inches='tight')
-#         print(f"Graph saved to {save_full_path}")
-#     else:
-#         plt.show()
-
-#     plt.close()
 
 def moving_average(values, k):
     """값 리스트에 대해 앞뒤 k개를 포함한 이동 평균을 계산"""
@@ -437,7 +352,6 @@ def plot_multiple_line_graphs(scores_list, names=None, save_path=None, xtick_int
         plt.show()
 
     plt.close()
-
 
 def plot_multiple_line_graphs_overlapped(scores_list, names=None, save_path=None, xtick_interval=4, window_size=0):
     """
