@@ -5,7 +5,7 @@
 This repository contains the official implementation of the paper: `Harnessing Influence Function in Explaining Graph Neural Networks`
 Heesoo Jung, Chanyong Kim, Geonhee Han, Hogun Park  
 KDD, 2025  
-[Paper Link](https://arxiv.org/abs/xxxx.xxxxx)
+[Paper Link 아직없음](https://arxiv.org/abs/xxxx.xxxxx)
 
 ## Table of Contents
 
@@ -41,4 +41,4 @@ If you find our work useful, please cite it as:
 ```
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+ㅁㄹ
