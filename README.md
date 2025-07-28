@@ -17,13 +17,7 @@ KDD, 2025
 
 ## Installation
 
-Clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/cycy-kim/HINT-G.git
-cd HINT-G
-pip install -r requirements.txt
-```
+See [environment.md](./environment.md) for Python version, dependencies, and installation steps.
 
 ## Dataset
 
@@ -31,21 +25,20 @@ The dataset used in this project is located in the `dataset/` directory.
 
 ## Usage
 
-
+- To run the main experiments, use [`HINT-G_script.ipynb`](./HINT-G_script.ipynb).
+- To visualize individual targets, use [`HINT-G_vis.ipynb`](./HINT-G_vis.ipynb).
 
 ## Citation
 
 If you find our work useful, please cite it as:
-??????
 ```bibtex
-@inproceedings{author2025title,
-  title={Paper Title},
-  author={Author1 and Author2 and Author3},
-  booktitle={Conference Name},
-  year={2025}
+@inproceedings{jung2025hintg,
+  title     = {Harnessing Influence Function in Explaining Graph Neural Networks},
+  author    = {Heesoo Jung and Chanyong Kim and Geonhee Han and Hogun Park},
+  booktitle = {Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)},
+  year      = {2025}
 }
 ```
 
 ## License
-????
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
