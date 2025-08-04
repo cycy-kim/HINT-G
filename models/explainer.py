@@ -916,7 +916,7 @@ class HINT_G_Edge(Explainer):
                 score_edges = self._pos_singlegraph(node)
                 edge_reals, topk = self._get_pos_reals(node, score_edges, return_topk=True)
             
-            # print(score_edges)
+            print(score_edges)
             all_reals = [1 if edge_reals[edge] else 0 for _, edge in score_edges]
             topk_scores = score_edges[:topk]
             topk_edges = {edge for _, edge in topk_scores}
@@ -961,6 +961,72 @@ class HINT_G_Edge(Explainer):
         print(f"Mean Recall: {mean_recall:.2f}")
         print(f"Mean AUC ROC: {mean_auc_roc:.2f}")
         return mean_auc_roc, mean_acc, mean_precision, mean_recall
+
+    # def edge_influences(self):
+    #     auc_rocs = []
+    #     acc_list = []
+    #     precision_list = []
+    #     recall_list = []
+
+    #     allnodes = self.data.nodes
+    #     for node in tqdm(allnodes):
+    #     # for node in allnodes:
+    #         # if self.args.task == 'neg':
+    #         score_edges = self._neg_singlegraph(node)
+    #         edge_reals, topk = self._get_neg_reals(node, score_edges, return_topk=True)
+    #         # elif self.args.task == 'pos':
+    #         score_edges_pos = self._pos_singlegraph(node)
+    #         edge_reals_pos, topk = self._get_pos_reals(node, score_edges_pos, return_topk=True)
+            
+    #         score_edges.extend(score_edges_pos)
+    #         score_edges.sort(reverse=True, key=lambda x: x[0])
+    #         edge_reals.update(edge_reals_pos)
+            
+    #         print(score_edges)
+    #         all_reals = [1 if edge_reals[edge] else 0 for _, edge in score_edges]
+    #         topk_scores = score_edges[:topk]
+    #         topk_edges = {edge for _, edge in topk_scores}
+    #         preds = [1 if edge in topk_edges else 0 for _, edge in score_edges]
+
+    #         acc = accuracy_score(all_reals, preds)
+    #         precision = precision_score(all_reals, preds, zero_division=0)
+    #         recall = recall_score(all_reals, preds, zero_division=0)
+
+    #         acc_list.append(acc)
+    #         precision_list.append(precision)
+    #         recall_list.append(recall)
+    #         try:
+    #             scores = [score for score, _ in score_edges]
+    #             rocauc = roc_auc_score(all_reals, scores)
+    #             auc_rocs.append(rocauc)
+    #             print(f'rocauc: {rocauc}')
+    #             # print(f'acc: {acc}')
+    #             # print(f'precision: {precision}')
+    #             # print(f'recall: {recall}')
+
+    #             # remapped_node = self.data.remap[node]
+    #             # adj = self.data.sub_support_tensors[remapped_node].cpu().to_dense()
+    #             # sub_node_label = self._get_sub_label(node)
+    #             # print(score_edges)
+    #             # print(len(edge_reals))
+    #             # print(sub_node_label)
+    #             # print(topk)
+    #             # plot_adj(adj, show=True, save=False, graph_index=True)
+            
+    #         except Exception as e:
+    #             print(e)
+    #             continue
+
+    #     mean_acc = np.mean(acc_list)
+    #     mean_precision = np.mean(precision_list)
+    #     mean_recall = np.mean(recall_list)
+    #     mean_auc_roc = np.mean(auc_rocs)
+
+    #     print(f"Mean Accuracy: {mean_acc:.2f}")
+    #     print(f"Mean Precision: {mean_precision:.2f}")
+    #     print(f"Mean Recall: {mean_recall:.2f}")
+    #     print(f"Mean AUC ROC: {mean_auc_roc:.2f}")
+    #     return mean_auc_roc, mean_acc, mean_precision, mean_recall
 
     def edge_influence_single(self, nodeid):
         if self.args.task == 'neg':
@@ -2084,6 +2150,74 @@ class HINT_G_Node(Explainer):
         print(f"Mean Recall: {mean_recall:.2f}")
         print(f"Mean AUC ROC: {mean_auc_roc:.2f}")
         return mean_auc_roc, mean_acc, mean_precision, mean_recall
+
+
+    # def edge_influences(self):
+    #     auc_rocs = []
+    #     acc_list = []
+    #     precision_list = []
+    #     recall_list = []
+
+    #     allnodes = self.data.nodes
+    #     for node in tqdm(allnodes):
+    #     # for node in allnodes:
+    #         # if self.args.task == 'neg':
+    #         score_edges = self._neg_singlegraph(node)
+    #         edge_reals, topk = self._get_neg_reals(node, score_edges, return_topk=True)
+    #         # elif self.args.task == 'pos':
+    #         score_edges_pos = self._pos_singlegraph(node)
+    #         edge_reals_pos, topk = self._get_pos_reals(node, score_edges_pos, return_topk=True)
+            
+    #         score_edges.extend(score_edges_pos)
+    #         score_edges.sort(reverse=True, key=lambda x: x[0])
+    #         edge_reals.update(edge_reals_pos)
+            
+    #         print(score_edges)
+    #         all_reals = [1 if edge_reals[edge] else 0 for _, edge in score_edges]
+    #         topk_scores = score_edges[:topk]
+    #         topk_edges = {edge for _, edge in topk_scores}
+    #         preds = [1 if edge in topk_edges else 0 for _, edge in score_edges]
+
+    #         acc = accuracy_score(all_reals, preds)
+    #         precision = precision_score(all_reals, preds, zero_division=0)
+    #         recall = recall_score(all_reals, preds, zero_division=0)
+
+    #         acc_list.append(acc)
+    #         precision_list.append(precision)
+    #         recall_list.append(recall)
+    #         try:
+    #             scores = [score for score, _ in score_edges]
+    #             rocauc = roc_auc_score(all_reals, scores)
+    #             auc_rocs.append(rocauc)
+    #             print(f'rocauc: {rocauc}')
+    #             # print(f'acc: {acc}')
+    #             # print(f'precision: {precision}')
+    #             # print(f'recall: {recall}')
+
+    #             # remapped_node = self.data.remap[node]
+    #             # adj = self.data.sub_support_tensors[remapped_node].cpu().to_dense()
+    #             # sub_node_label = self._get_sub_label(node)
+    #             # print(score_edges)
+    #             # print(len(edge_reals))
+    #             # print(sub_node_label)
+    #             # print(topk)
+    #             # plot_adj(adj, show=True, save=False, graph_index=True)
+            
+    #         except Exception as e:
+    #             print(e)
+    #             continue
+
+    #     mean_acc = np.mean(acc_list)
+    #     mean_precision = np.mean(precision_list)
+    #     mean_recall = np.mean(recall_list)
+    #     mean_auc_roc = np.mean(auc_rocs)
+
+    #     print(f"Mean Accuracy: {mean_acc:.2f}")
+    #     print(f"Mean Precision: {mean_precision:.2f}")
+    #     print(f"Mean Recall: {mean_recall:.2f}")
+    #     print(f"Mean AUC ROC: {mean_auc_roc:.2f}")
+    #     return mean_auc_roc, mean_acc, mean_precision, mean_recall
+
 
     def edge_influence_single(self, nodeid):
         if self.args.task == 'neg':

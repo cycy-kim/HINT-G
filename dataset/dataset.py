@@ -51,6 +51,7 @@ NODE_SETTINGS = {
     
     'BA-2motif': {
         1: [i for i in range(0,100)] + [i for i in range(500,600)], # pos
+        # 1:  [i for i in range(500,600)], # pos
         # 1: [i for i in range(0,100,20)] + [i for i in range(500,600,20)], # pos
         # 1: [i for i in range(505,506)], # vis
         # 1: [i for i in range(0,100)], # neg
